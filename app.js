@@ -141,7 +141,7 @@ handlebars = handlebars.create({
         simpleCSS: function(config){
             var cssString = '';
             if(typeof config.settings.style.cssHeaderBackgroundColor !== 'undefined' && config.settings.style.cssHeaderBackgroundColor !== ''){
-                cssString = cssString + '.navbar-default, .headerText h1 {background-color:' + config.settings.style.cssHeaderBackgroundColor + ';}';
+                cssString = cssString + '.navbar-default, .welcome-panel, .headerText h1 {background-color:' + config.settings.style.cssHeaderBackgroundColor + ';}';
             }
             if(typeof config.settings.style.cssHeaderTextColor !== 'undefined' && config.settings.style.cssHeaderTextColor !== ''){
                 cssString = cssString + '.navbar-default .navbar-brand, .headerText h1 {color:' + config.settings.style.cssHeaderTextColor + ';}';
@@ -160,7 +160,7 @@ handlebars = handlebars.create({
                 cssString = cssString + '#btn_search, .btn-default{color:' + config.settings.style.cssButtonTextColor + ';}';
             }
             if(typeof config.settings.style.cssLinkColor !== 'undefined' && config.settings.style.cssLinkColor !== ''){
-                cssString = cssString + 'a, footer a, a:hover, a:focus, .contactLink a{color:' + config.settings.style.cssLinkColor + ' !important;}';
+                cssString = cssString + 'a, .navbar-default .navbar-nav>li>a, footer a, a:hover, a:focus, .contactLink a{color:' + config.settings.style.cssLinkColor + ' ;}';
             }
             if(typeof config.settings.style.cssTextColor !== 'undefined' && config.settings.style.cssTextColor !== ''){
                 cssString = cssString + 'body, .panel-primary>.panel-heading, .list-group-heading{color:' + config.settings.style.cssTextColor + ';}';
@@ -199,7 +199,12 @@ handlebars = handlebars.create({
                 return options.fn(this);
             }
             return options.inverse(this);
-        }
+        },
+		DateString: function(str) {
+			var d = new Date(str);
+			//return d.toLocaleDateString();
+			return d.toUTCString();
+		}
     }
 });
 
@@ -313,6 +318,7 @@ if(config.settings.database.type === 'embedded'){
     db.users = new Nedb({filename: path.join(__dirname, '/data/users.db'), autoload: true});
     db.kb = new Nedb({filename: path.join(__dirname, '/data/kb.db'), autoload: true});
     db.votes = new Nedb({filename: path.join(__dirname, '/data/votes.db'), autoload: true});
+	db.customers = new Nedb({filename: path.join(__dirname, '/data/customers.db'), autoload: true});
 
     // add db to app for routes
     app.db = db;
@@ -340,6 +346,7 @@ if(config.settings.database.type === 'embedded'){
         db.users = db.collection('users');
         db.kb = db.collection('kb');
         db.votes = db.collection('votes');
+		db.customers = db.collection('customers');
 
         // add db to app for routes
         app.db = db;
@@ -356,33 +363,5 @@ if(config.settings.database.type === 'embedded'){
         });
     });
 }
-
-function exitHandler(options, err) {
-    if (options.cleanup) {
-        console.log('clean');
-        if(config.settings.database.type !== 'embedded'){
-            app.db.close();
-        }
-    }
-    if (err) {
-        console.log(err.stack);
-    }
-    if (options.exit) {
-        process.exit();
-    }
-}
-
-//do something when app is closing
-process.on('exit', exitHandler.bind(null,{cleanup:true}));
-
-//catches ctrl+c event
-process.on('SIGINT', exitHandler.bind(null, {exit:true}));
-
-// catches "kill pid" (for example: nodemon restart)
-process.on('SIGUSR1', exitHandler.bind(null, {exit:true}));
-process.on('SIGUSR2', exitHandler.bind(null, {exit:true}));
-
-//catches uncaught exceptions
-process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
 module.exports = app;
