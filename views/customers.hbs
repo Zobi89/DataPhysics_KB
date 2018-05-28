@@ -1,0 +1,30 @@
+<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<ol class="breadcrumb">
+	  			<li><a href="{{app_context}}/">{{__ "Home"}}</a></li>
+	 			<li class="active">{{__ "Customers"}}</li>
+			</ol>
+			<h1>{{__ "Customers"}}</h1>
+			<ul class="list-group">
+				{{#each customers}}
+					<li class="list-group-item">
+						<strong>{{this.customers_name}}</strong> - {{this.customers_company}} - {{this.customers_SN}}
+				  		<span class="pull-right">
+                            {{#is_an_admin ../session.is_admin}}
+								<a href="{{app_context}}/customer/edit/{{this._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="{{app_context}}/customer/delete/{{this._id}}" onclick="return confirm('{{__ "Are you sure you want to delete?"}}')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            {{/is_an_admin}}
+						</span>
+						<br>
+						{{this.customers_email}}
+						<br>
+						{{__ "# of logins: "}}{{this.customers_nLogin}}
+						<br>
+						{{__ "Last login: "}}{{format_date this.customers_lastLogin}}
+					</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</div>
