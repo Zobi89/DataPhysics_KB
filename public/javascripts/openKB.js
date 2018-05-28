@@ -43,10 +43,30 @@ $(document).ready(function(){
         if($('#frm_search').length){
             $('#frm_search').on('keyup', function(){
                 if($('#frm_search').val().length > 2){
+				// Evaluate selected topic in typeahead search - OZ
+				if ($('#lastSearch')[0]) {
+					var FLTSearch = '';
+					switch ($('#lastSearch')[0].innerText) {
+					  case 'dp900':
+					  case 'dp700':
+					  case 'dp200':
+					  case 'shakers':
+					  case 'amplifiers':
+					  case 'legacy':
+						FLTSearch += $('#lastSearch')[0].innerText + ' ' + $('#frm_search').val();
+						break;
+					  default:
+						FLTSearch = $('#frm_search').val();
+						break;
+					}
+				} else {
+					FLTSearch = $('#frm_search').val();
+				}// OZ
                     $.ajax({
                         method: 'POST',
                         url: $('#app_context').val() + '/search_api',
-                        data: {searchTerm: $('#frm_search').val()}
+						data: {searchTerm: FLTSearch} // OZ
+                        // data: {searchTerm: $('#frm_search').val()}
                     })
                     .done(function(response){
                         if(response.length === 0){
@@ -372,7 +392,26 @@ $(document).ready(function(){
         if($('#frm_search').val() === ''){
             show_notification('Please enter a search value', 'danger');
             event.preventDefault();
-        }
+		} else {
+			// Evaluate selected topic in button search - OZ
+			if ($('#lastSearch')[0]) {
+				var enteredSearch = $('#frm_search').val();
+				var lastSearch = $('#lastSearch')[0].innerText;
+				var filteredSearch = lastSearch + ' ' + enteredSearch;
+				switch (lastSearch) {
+					case 'dp900':
+					case 'dp700':
+					case 'dp200':
+					case 'shakers':
+					case 'amplifiers':
+					case 'legacy':
+					$('#frm_search').val(filteredSearch);
+						break;
+					default:
+						break;
+				}
+			}
+		}
     });
 
     if($('#input_notify_message').val() !== ''){
