@@ -1,123 +1,189 @@
 <div class="row">
 	<form action="{{app_context}}/search" id="search_form" method="post">
-        {{#if config.settings.show_featured_articles}}
-		    <div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 search_bar">
-        {{else}}
-            <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 search_bar">
-        {{/if}}
-			<div class="input-group">
-				<input type="text" name="frm_search" id="frm_search" autocomplete="off" class="form-control input-lg" placeholder="{{__ "Search the knowledge base"}}">
-				<span class="input-group-btn">
-					<button class="btn btn-success btn-lg" id="btn_search" type="submit">{{__ "Search"}}</button>
-				</span>
+		{{#if config.settings.show_featured_articles}}
+		<div class="col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2 search_bar">
+			{{else}}
+			<div class="col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2 search_bar">
+				{{/if}}
+				<div class="input-group">
+					<input type="text" name="frm_search" id="frm_search" autocomplete="off" class="form-control input-lg" placeholder="{{__ "Search the knowledge base"}}">
+					<span class="input-group-btn">
+						<button class="btn btn-success btn-lg" id="btn_search" type="submit"><i class="fa fa-search"></i></button>
+					</span>
+				</div>
+				{{#ifCond config.settings.typeahead_search '===' true}}
+				<div id="searchResult" class="hidden col-lg-12">
+					<ul class="list-group searchResultList"></ul>
+				</div>
+				{{/ifCond}}
 			</div>
-            {{#ifCond config.settings.typeahead_search '===' true}}
-            <div id="searchResult" class="hidden col-lg-12">
-                <ul class="list-group searchResultList"></ul>
-            </div>
-            {{/ifCond}}
-		</div>
-	</form>
-</div>
-<div class="row">
-    {{#if config.settings.show_featured_articles}}
-        <div class="col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1">
-            <div style="margin-top: 30px;">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-heading">{{__ "Featured articles"}}</li>
-                    {{#each featured_results}}
-                        {{#if this.kb_permalink}}
-                            <li class="list-group-item"><h5><a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this.kb_permalink}}">{{this.kb_title}}</a></h5></li>
-                        {{else}}
-                            <li class="list-group-item"><h5><a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this._id}}">{{this.kb_title}}</a></h5></li>
-                        {{/if}}
-                    {{/each}}
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-8 col-lg-8">
-    {{else}}
-        <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-    {{/if}}
-		{{#if search_term}}
-			<div style="margin-top: 30px;">
-                <ul class="list-group">
-                    {{#ifCond routeType '===' 'topic'}}
-                    <li class="list-group-item list-group-heading">{{__ "Topic"}}: {{search_term}}</li>
-                    {{else}}
-                    <li class="list-group-item list-group-heading">{{__ "Results for"}}: {{search_term}}</li>
-                    {{/ifCond}}
-                    {{#each search_results}}
-                        {{#if this.kb_permalink}}
-                            <li class="list-group-item">
-                                <h5>
-                                    <a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this.kb_permalink}}">{{this.kb_title}}</a>
-                                    {{#if @root.config.settings.show_published_date}}
-                                        {{#if @root.config.settings.show_view_count}}
-                                            <span class="pull-right view_count">&nbsp; / <strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
-                                        {{else}}
-                                            <span class="pull-right view_count"><strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
-                                        {{/if}}
-                                    {{/if}}
-                                    {{#if @root.config.settings.show_view_count}}
-                                        <span class="pull-right view_count"><strong>{{__ "View count"}}:</strong> {{view_count this.kb_viewcount}}</span>
-                                    {{/if}}
-                                </h5>
-                            </li>
-                        {{else}}
-                            <li class="list-group-item">
-                                <h5>
-                                    <a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this._id}}">{{this.kb_title}}</a>
-                                    {{#if @root.config.settings.show_published_date}}
-                                        {{#if @root.config.settings.show_view_count}}
-                                            <span class="pull-right view_count">&nbsp; / <strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
-                                        {{else}}
-                                            <span class="pull-right view_count"><strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
-                                        {{/if}}
-                                    {{/if}}
-                                    {{#if @root.config.settings.show_view_count}}
-                                        <span class="pull-right view_count"><strong>{{__ "View count"}}: </strong>{{view_count this.kb_viewcount}}</span>
-                                    {{/if}}
-                                </h5>
-                            </li>
-                        {{/if}}
-                    {{else}}
-                        <li class="list-group-item">
-                            <h5>{{__ "No results found"}}</h5>
-                        </li>
-                    {{/each}}
-                </ul>
-			</div>
-		{{else}}
-			<div style="margin-top: 30px;">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-heading">{{__ "Top articles"}}</li>
-                    {{#each top_results}}
-                            <li class="list-group-item">
-                                <h5>
-                                {{#if kb_permalink}}
-                                    <a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this.kb_permalink}}">{{this.kb_title}}</a>
-                                {{else}}
-                                    <a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this._id}}">{{this.kb_title}}</a>
-                                {{/if}}
-                                {{#if @root.config.settings.show_published_date}}
-                                    {{#if @root.config.settings.show_view_count}}
-                                        <span class="pull-right view_count">&nbsp; / <strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
-                                    {{else}}
-                                        <span class="pull-right view_count"><strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
-                                    {{/if}}
-                                {{/if}}
-                                {{#if @root.config.settings.show_view_count}}
-                                    <span class="pull-right view_count"><strong>{{__ "View count"}}:</strong> {{view_count this.kb_viewcount}}</span>
-                                {{/if}}
-                                {{#if this.kb_password}}
-                                    <span class="pull-right view_count" style="padding-right: 5px;"><i class="fa fa-key"></i></span>
-                                {{/if}}
-                                </h5>
-                            </li>
-                    {{/each}}
-                </ul>
-			</div>
-		{{/if}}
+		</form>
 	</div>
-</div>
+	<div class="row">
+		{{#if config.settings.show_featured_articles}}
+		<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+			<div style="margin-top: 30px;">
+				<ul class="list-group">
+					<li class="list-group-item list-group-heading">{{__ "Featured articles"}}</li>
+					{{#each featured_results}}
+					{{#if this.kb_permalink}}
+					<li class="list-group-item"><h5><a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this.kb_permalink}}">{{this.kb_title}}</a></h5></li>
+					{{else}}
+					<li class="list-group-item"><h5><a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this._id}}">{{this.kb_title}}</a></h5></li>
+					{{/if}}
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+			{{else}}
+			<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+				{{/if}}
+				{{#if search_term}}
+				<div style="margin-top: 30px;">
+					<ul class="list-group">
+						<p class="hidden" id="lastSearch">{{search_term}}</p>
+						{{#ifCond routeType '===' 'topic'}}
+						<li class="list-group-item list-group-heading">{{__ "Topic"}}: {{search_term}}</li>
+						{{else}}
+						<li class="list-group-item list-group-heading">{{__ "Results for"}}: {{search_term}}</li>
+						{{/ifCond}}
+						{{#each search_results}}
+						{{#if this.kb_permalink}}
+						<li class="list-group-item">
+							<h5>
+								<a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this.kb_permalink}}">{{this.kb_title}}</a>
+								{{#if @root.config.settings.show_published_date}}
+								{{#if @root.config.settings.show_view_count}}
+								<span class="pull-right view_count">&nbsp; / <strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
+								{{else}}
+								<span class="pull-right view_count"><strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
+								{{/if}}
+								{{/if}}
+								{{#if @root.config.settings.show_view_count}}
+								<span class="pull-right view_count"><strong>{{__ "View count"}}:</strong> {{view_count this.kb_viewcount}}</span>
+								{{/if}}
+							</h5>
+						</li>
+						{{else}}
+						<li class="list-group-item">
+							<h5>
+								<a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this._id}}">{{this.kb_title}}</a>
+								{{#if @root.config.settings.show_published_date}}
+								{{#if @root.config.settings.show_view_count}}
+								<span class="pull-right view_count">&nbsp; / <strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
+								{{else}}
+								<span class="pull-right view_count"><strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
+								{{/if}}
+								{{/if}}
+								{{#if @root.config.settings.show_view_count}}
+								<span class="pull-right view_count"><strong>{{__ "View count"}}: </strong>{{view_count this.kb_viewcount}}</span>
+								{{/if}}
+							</h5>
+						</li>
+						{{/if}}
+						{{else}}
+						<li class="list-group-item">
+							<h5>{{__ "No results found"}}</h5>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+				{{else}}
+				<div class="row " style="margin-top: 60px;">
+					<div class="equal">
+						<div class="col-sm-4 col-xs-6">
+							<a href="{{current_url}}/topic/dp900">
+								<div class="thumbnail thumbnail_main">
+									<img src="{{current_url}}/images/900.png" alt="DP900">
+									<div class="caption">
+										<h5 class="text-center thumbnail_main_text">DP900</h5>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4 col-xs-6">
+							<a href="{{current_url}}/topic/dp700">
+								<div class="thumbnail thumbnail_main">
+									<img src="{{current_url}}/images/700.png" alt="DP700">
+									<div class="caption">
+										<h5 class="text-center thumbnail_main_text">DP700</h5>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4 col-xs-6">
+							<a href="{{current_url}}/topic/dp200">
+								<div class="thumbnail thumbnail_main">
+									<img src="{{current_url}}/images/200.png" alt="DP200">
+									<div class="caption">
+										<h5 class="text-center thumbnail_main_text">DP200</h5>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4 col-xs-6">
+							<a href="{{current_url}}/topic/shakers">
+								<div class="thumbnail thumbnail_main">
+									<img src="{{current_url}}/images/shaker.png" alt="SignalForce Shakers">
+									<div class="caption">
+										<h5 class="text-center thumbnail_main_text">Shakers</h5>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4 col-xs-6">
+							<a href="{{current_url}}/topic/amplifiers">
+								<div class="thumbnail thumbnail_main">
+									<img src="{{current_url}}/images/amplifier.png" alt="SignalForce Amplifiers">
+									<div class="caption">
+										<h5 class="text-center thumbnail_main_text">Amplifiers</h5>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4 col-xs-6">
+							<a href="{{current_url}}/topic/legacy">
+								<div class="thumbnail thumbnail_main">
+									<img src="{{current_url}}/images/legacy.png" alt="Legacy Products">
+									<div class="caption">
+										<h5 class="text-center thumbnail_main_text">Legacy Products</h5>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row" style="margin-top: 10px; padding-bottom: 20px">
+					<ul class="list-group">
+						<li class="list-group-item list-group-heading">{{__ "Top articles"}}</li>
+						{{#each top_results}}
+						<li class="list-group-item">
+							<h5>
+								{{#if kb_permalink}}
+								<a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this.kb_permalink}}">{{this.kb_title}}</a>
+								{{else}}
+								<a href="{{app_context}}/{{@root.config.settings.route_name}}/{{this._id}}">{{this.kb_title}}</a>
+								{{/if}}
+								{{#if @root.config.settings.show_published_date}}
+								{{#if @root.config.settings.show_view_count}}
+								<span class="pull-right view_count">&nbsp; / <strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
+								{{else}}
+								<span class="pull-right view_count"><strong>{{__ "Date"}}:</strong> {{format_date this.kb_published_date}}</span>
+								{{/if}}
+								{{/if}}
+								{{#if @root.config.settings.show_view_count}}
+								<span class="pull-right view_count"><strong>{{__ "View count"}}:</strong> {{view_count this.kb_viewcount}}</span>
+								{{/if}}
+								{{#if this.kb_password}}
+								<span class="pull-right view_count" style="padding-right: 5px;"><i class="fa fa-key"></i></span>
+								{{/if}}
+							</h5>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+				{{/if}}
+			</div>
+		</div>
