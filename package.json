@@ -1,7 +1,7 @@
 {
-  "name": "openkb",
-  "version": "1.0.23",
-  "description": "openKB is an Open Source Nodejs Markdown based knowledge base/FAQ/Wiki app with powerful lunr search",
+  "name": "DP_KB",
+  "version": "1.1",
+  "description": "Knowledge Base for Data Physics Products, based on openKB",
   "private": false,
   "scripts": {
     "start": "node app.js",
@@ -42,6 +42,7 @@
     "multer": "^1.2.0",
     "nedb": "^1.8.0",
     "nedb-session-store": "^1.1.1",
+    "npm": "^6.1.0",
     "remove-markdown": "^0.1.0",
     "require-main-filename": "^1.0.1",
     "rimraf": "^2.5.4",
@@ -58,7 +59,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrvautin/openKB.git"
+    "url": "git+https://github.com/ozobi/DataPhysics_KB.git"
   },
   "keywords": [
     "knowledge base",
@@ -75,11 +76,11 @@
     "openkb",
     "mongodb"
   ],
-  "author": "Mark Moffat",
-  "license": "MIT",
+  "author": "Onur Zobi", "Mark Moffat",
+  "license": "APLv2",
   "bugs": {
     "url": "https://github.com/mrvautin/openKB/issues"
   },
-  "homepage": "https://openkb.markmoffat.com",
+  "homepage": "http://www.dataphysics.com/",
   "snyk": true
 }
