@@ -136,8 +136,8 @@
             <ul class="dropdown-menu">
               {{#ifCond session.is_admin '==' 'true'}}
               <li><a href="{{app_context}}/customers/new"><i class="fa fa-user-plus fa-fw"></i>&nbsp; {{__ "New"}}</a></li>
-              <li><a href="{{app_context}}/customers"><i class="fa fa-users fa-fw"></i>&nbsp; {{__ "List"}}</a></li>
               {{/ifCond}}
+              <li><a href="{{app_context}}/customers"><i class="fa fa-users fa-fw"></i>&nbsp; {{__ "List"}}</a></li>
             </ul>
           </li>
           <li class="dropdown">
