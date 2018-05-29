@@ -1,7 +1,7 @@
 {
-  "name": "openKB",
-  "description": "openKB is an Open Source Nodejs Markdown based knowledge base/FAQ/Wiki app with powerful lunr search",
-  "repository": "https://github.com/mrvautin/openKB",
-  "logo": "https://raw.githubusercontent.com/mrvautin/mrvautin.github.io/master/images/openkb/openkb_logo_small.png",
-  "keywords": ["nodejs", "knowledgebase", "faq", "wiki", "markdown"]
+  "name": "DataPhysicsKB",
+  "description": "Knowledge Base for Data Physics Products, based on openKB",
+  "repository": "https://github.com/ozobi/DataPhysicsKB",
+  "logo": "https://raw.githubusercontent.com/ozobi/DataPhysicsKB/master/public/logo.png",
+  "keywords": ["knowledge base", "knowledgebase", "faq", "Data Physics", "DP", "SignalCalc", "SignalForce", "openKB"]
 }
