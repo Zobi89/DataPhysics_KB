@@ -1,4 +1,4 @@
-# Data Physics Knowledgebase
+# Data Physics Knowledge Base
 
 ![logo](https://github.com/ozobi/DataPhysics_KB/blob/DP_KB/public/logo.png)
 
