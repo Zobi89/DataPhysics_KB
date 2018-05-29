@@ -1,6 +1,6 @@
 # Data Physics Knowledgebase
 
-![logo](http://www.dataphysics.com/wp-content/themes/dataphysics/images/logo.jpg)
+![logo](https://github.com/ozobi/DataPhysics_KB/blob/DP_KB/public/logo.png)
 
 # Installation
 Clone Repository: git clone https://github.com/ozobi/DataPhysics_KB.git && cd DP_KB
