@@ -1548,11 +1548,6 @@ router.get('/export', common.restrict, function (req, res){
 
 // customers
 router.get('/customers', common.restrict, function (req, res){
-  // only allow admin
-  if(req.session.is_admin !== 'true'){
-    res.render('error', {message: 'Access denied', helpers: req.handlebars, config: config});
-    return;
-  }
 
   var db = req.app.db;
   common.dbQuery(db.customers, {}, null, null, function (err, customers){
@@ -1560,7 +1555,7 @@ router.get('/customers', common.restrict, function (req, res){
       title: 'Customers',
       customers: customers,
       config: config,
-      is_admin: req.session.is_admin,
+      is_admin: req.session,
       helpers: req.handlebars,
       session: req.session,
       message: common.clear_session_value(req.session, 'message'),
