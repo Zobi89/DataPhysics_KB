@@ -12,4 +12,4 @@
 Running the application in Production using minified code can be done by:
 
 1. Create the minified/ugly files: npm run uglify
-2. Ensure the minified/ugly files are being used: NODE_ENV=production node app.js
+2. Ensure the minified/ugly files are being used: NODE_ENV=production node app.js (for CMD -> node app.js -NODE_ENV=production)
