@@ -1,5 +1,5 @@
 {
-  "name": "DP_KB",
+  "name": "DataPhysicsKB",
   "version": "1.1",
   "description": "Knowledge Base for Data Physics Products, based on openKB",
   "private": false,
@@ -59,7 +59,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ozobi/DataPhysics_KB.git"
+    "url": "git+https://github.com/ozobi/DataPhysicsKB.git"
   },
   "keywords": [
     "knowledge base",
@@ -76,7 +76,7 @@
     "openkb",
     "mongodb"
   ],
-  "author": "Onur Zobi", "Mark Moffat",
+  "author": "Onur Zobi",
   "license": "APLv2",
   "bugs": {
     "url": "https://github.com/mrvautin/openKB/issues"
