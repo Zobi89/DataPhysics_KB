@@ -4,7 +4,7 @@
 
 # Installation
 
-1. Clone Repository: git clone https://github.com/ozobi/DataPhysics_KB.git && cd DP_KB
+1. Clone Repository: git clone https://github.com/ozobi/DataPhysicsKB.git && cd DataPhysicsKB
 2. Install dependencies: npm install
 3. Start application: npm start
 4. Go to http://127.0.0.1:4444 in your browser
