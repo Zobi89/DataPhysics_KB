@@ -160,7 +160,7 @@ handlebars = handlebars.create({
                 cssString = cssString + '#btn_search, .btn-default{color:' + config.settings.style.cssButtonTextColor + ';}';
             }
             if(typeof config.settings.style.cssLinkColor !== 'undefined' && config.settings.style.cssLinkColor !== ''){
-                cssString = cssString + 'a, .navbar-default .navbar-nav>li>a, .dropdown-menu>li>a, footer a, a:hover, a:focus, .contactLink a{color:' + config.settings.style.cssLinkColor + ' ;}';
+                cssString = cssString + 'a, .navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav .open .dropdown-menu>li>a, footer a, a:hover, a:focus, .contactLink a{color:' + config.settings.style.cssLinkColor + ' ;}';
             }
             if(typeof config.settings.style.cssTextColor !== 'undefined' && config.settings.style.cssTextColor !== ''){
                 cssString = cssString + 'body, .panel-primary>.panel-heading, .list-group-heading{color:' + config.settings.style.cssTextColor + ';}';
