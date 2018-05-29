@@ -1,6 +1,6 @@
 # Data Physics Knowledge Base
 
-![logo](https://github.com/ozobi/DataPhysics_KB/blob/DP_KB/public/logo.png)
+![logo](https://raw.githubusercontent.com/ozobi/DataPhysics_KB/master/public/logo.png)
 
 # Installation
 
