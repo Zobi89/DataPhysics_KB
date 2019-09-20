@@ -1,16 +1,18 @@
 {
-    "name": "Data Physics Knowledge Base",
-    "short_name": "Data Physics Knowledge Base",
+    "name": "Knowledge Base",
+    "short_name": "DP KB",
     "icons": [
         {
-            "src": "/android-chrome-192x192.png",
+            "src": "/android-chrome-192x192.png?v=2",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+		    "purpose": "maskable any"
         },
         {
-            "src": "/android-chrome-256x256.png",
-            "sizes": "256x256",
-            "type": "image/png"
+            "src": "/android-chrome-512x512.png?v=2",
+            "sizes": "512x512",
+            "type": "image/png",
+		    "purpose": "maskable any"
         }
     ],
     "theme_color": "#9c022e",
