@@ -174,5 +174,20 @@
 	"Previous versions": "Previous versions",
 	"Topic": "Topic",
 	"Suggestion successfully processed": "Suggestion successfully processed",
-	"Style": "Style"
+	"Style": "Style",
+	"Filtered term": "Filtered term",
+	"File upload error. Please select a file.": "File upload error. Please select a file.",
+	"url.URL.parse is not a function": "url.URL.parse is not a function",
+	"A user with that email does not exist.": "A user with that email does not exist.",
+	"System Type": "System Type",
+	"DP900": "DP900",
+	"DP700": "DP700",
+	"DP200": "DP200",
+	"Other": "Other",
+	"Register": "Register",
+	"Customers": "Customers",
+	"List": "List",
+	"# of logins: ": "# of logins: ",
+	"Last login: ": "Last login: ",
+	"Welcome back": "Welcome back"
 }
