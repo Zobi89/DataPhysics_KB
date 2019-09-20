@@ -3,6 +3,7 @@ data/users.db
 data/sessions.db
 data/kb.db
 data/votes.db
+data/customers.db
 Rubbish/
 public/images/
 public/uploads/
@@ -10,4 +11,5 @@ data/export.zip
 .vscode
 jsconfig.json
 .idea/
+package-lock.json
 .DS_Store
