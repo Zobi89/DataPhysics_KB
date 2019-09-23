@@ -189,5 +189,18 @@
 	"List": "List",
 	"# of logins: ": "# of logins: ",
 	"Last login: ": "Last login: ",
-	"Welcome back": "Welcome back"
+	"Welcome back": "Welcome back",
+	"Starting download...": "Starting download...",
+	"Can't set headers after they are sent.": "Can't set headers after they are sent.",
+	"All unused files have been removed": "All unused files have been removed",
+	"Unknown email address": "Unknown email address",
+	"User deleted.": "User deleted.",
+	"Cannot read property 'includeZero' of undefined": "Cannot read property 'includeZero' of undefined",
+	"New Customer": "New Customer",
+	"Name": "Name",
+	"Company": "Company",
+	"Email": "Email",
+	"System Number": "System Number",
+	"Welcome to Data Physics Knowledge Base": "Welcome to Data Physics Knowledge Base",
+	"Customer deleted": "Customer deleted"
 }

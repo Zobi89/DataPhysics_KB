@@ -1511,16 +1511,21 @@ router.get('/export', common.restrict, (req, res) => {
             // add and write file to zip
             zip.file(results[i].kb_title + '.md', results[i].kb_body);
         }
-
-        // save the zip and serve to browser
-        let buffer = zip.generate({ type: 'nodebuffer' });
-        fs.writeFile('data/export.zip', buffer, (err) => {
-            if(err)throw err;
-            res.set('Content-Type', 'application/zip');
-            res.set('Content-Disposition', 'attachment; filename=data/export.zip');
-            res.set('Content-Length', buffer.length);
-            res.end(buffer, 'binary');
-        });
+		
+		zip.generateNodeStream({type:'nodebuffer',streamFiles:true})
+			.pipe(fs.createWriteStream('data/export.zip'))
+			.on('finish', function(){
+				console.log("export.zip created");
+				var stats = fs.statSync("data/export.zip")
+				var exportSize = stats["size"]
+				console.log("Export file size: "+exportSize);
+				res.set({
+					'Content-Type': 'application/zip',
+					'Content-Disposition': 'attachment; filename=data/export.zip',
+					'Content-Length': exportSize
+				});
+				res.sendFile(appDir+'/data/export.zip');				
+			});
     });
 });
 
@@ -1545,7 +1550,7 @@ router.get('/customers', common.restrict, function (req, res){
 // customers
 router.get('/customer/edit/:id', common.restrict, (req, res) => {
   const db = req.app.db;
-  db.customers.findOne({_id: common.getId(req.params.id)}, (err, user) => {
+  db.customers.findOne({_id: common.getId(req.params.id)}, (err, customer) => {
     // if the the current user is not
     // an admin we render an access denied message
     if(req.session.is_admin === 'false'){
@@ -1586,14 +1591,13 @@ router.get('/customers/new', common.restrict, (req, res) => {
 });
 
 // insert / register a customer
-router.post('/customer_insert', common.restrict, (req, res) => {
+router.post('/customer_insert', (req, res) => {
   const db = req.app.db;
-  let bcrypt = req.bcrypt;
-  var d = new Date();
-  var dVal = d.valueOf();
+  let d = new Date();
+  let dVal = d.valueOf();
 
   // sets up the document
-  var doc = {
+  let doc = {
     customers_name: req.body.customers_name,
     customers_company: req.body.customers_company,
     customers_email: req.body.customers_email,

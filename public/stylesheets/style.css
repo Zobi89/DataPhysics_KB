@@ -260,13 +260,18 @@ h5.thumbnail_main_text{
 	color: #9c022e;
 }
 
+@media (min-width: 767px) {
+	.welcome-page{
+		overflow: hidden;
+	}
+}
+
 .welcome-img{
-	max-height: auto;
+	max-height: 100%;
 	max-height: -moz-available;          /* WebKit-based browsers will ignore this. */
-	max-height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
 	max-height: fill-available;
 
-	max-width: auto;
+	max-width: 100%;
 	max-width: -moz-available;          /* WebKit-based browsers will ignore this. */
 	max-width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
 	max-width: fill-available;

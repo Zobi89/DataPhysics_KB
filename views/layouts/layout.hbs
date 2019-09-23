@@ -101,7 +101,11 @@
   {{/if}}
   {{/ifCond}}
 </head>
+{{#ifCond title '===' 'Welcome'}}
+<body class="{{show_footer}} welcome-page">
+{{else}}
 <body class="{{show_footer}}">
+{{/ifCond}}
   <!-- Static navbar -->
   {{#ifCond title '===' 'Welcome'}}
   {{else}}
