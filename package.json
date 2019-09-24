@@ -1,6 +1,6 @@
 {
   "name": "DataPhysicsKB",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "Knowledge Base for Data Physics Products, based on openKB",
   "private": false,
   "scripts": {

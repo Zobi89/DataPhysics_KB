@@ -202,5 +202,8 @@
 	"Email": "Email",
 	"System Number": "System Number",
 	"Welcome to Data Physics Knowledge Base": "Welcome to Data Physics Knowledge Base",
-	"Customer deleted": "Customer deleted"
+	"Customer deleted": "Customer deleted",
+	"Visible state": "Visible state",
+	"Public": "Public",
+	"Private": "Private"
 }
