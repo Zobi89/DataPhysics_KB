@@ -72,7 +72,7 @@
     "openKB"
   ],
   "author": "Onur Zobi",
-  "license": "GPLv3",
+  "license": "GPL-1.0-or-later",
   "bugs": {
     "url": "https://github.com/mrvautin/openKB/issues"
   },
