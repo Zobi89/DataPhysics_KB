@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const Nedb = require('nedb');
 const session = require('express-session');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const markdownit = require('markdown-it')({ html: true, linkify: true, typographer: true });
 const moment = require('moment');
 const fs = require('fs');
@@ -71,7 +71,7 @@ handlebars = handlebars.create({
                 app_context = '/' + app_context;
             }
             if(keywords){
-                let array = keywords.split(','); let links = '';
+                const array = keywords.split(','); let links = '';
                 for(let i = 0; i < array.length; i++){
                     if(array[i].trim() !== ''){
                         links += '<a href="' + app_context + '/search/' + array[i].trim() + '">' + array[i].trim() + '</a> <span class="keywordSeporator">|</span> ';
@@ -275,7 +275,7 @@ if(app_context !== ''){
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-    let err = new Error('Not Found');
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
